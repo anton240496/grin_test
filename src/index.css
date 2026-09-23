@@ -1,0 +1,518 @@
+/* Основные сбросы стилей и базовые настройки */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f0f2f5;
+  color: #333;
+  line-height: 1.5;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Стили для главного компонента приложения */
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  background-color: #0084d6; /* Синий цвет Telegram */
+  color: white;
+  padding: 15px 20px;
+  /* Раскладываем название приложения и кнопку смены аккаунта по краям */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовок приложения в шапке */
+.app-header h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* Стили для контейнера чата */
+.chat-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f2f5;
+  border-radius: 8px;
+  margin: 20px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chat-header {
+  background-color: #0084d6;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+}
+
+.chat-phone {
+  font-size: 16px;
+}
+
+.change-chat-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.change-chat-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Стили для окна чата */
+.chat-window {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f2f5;
+  min-height: 400px;
+}
+
+/* Обёртка для сообщения */
+.message-wrapper {
+  margin-bottom: 15px;
+  max-width: 70%;
+}
+
+.message-wrapper.outgoing {
+  align-self: flex-end;
+}
+
+.message {
+  padding: 10px 15px;
+  border-radius: 15px;
+  word-wrap: break-word;
+  position: relative;
+}
+
+.message.outgoing {
+  background-color: #0084d6;
+  color: white;
+  margin-left: auto;
+  border-bottom-right-radius: 5px;
+}
+
+.message.incoming {
+  background-color: white;
+  color: #333;
+  margin-right: auto;
+  border-bottom-left-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.message-text {
+  font-size: 15px;
+  margin-bottom: 5px;
+  white-space: pre-wrap;
+}
+
+.message-time {
+  font-size: 11px;
+  opacity: 0.7;
+  text-align: right;
+}
+
+/* Стили для ввода сообщения */
+.message-input-container {
+  padding: 15px 20px;
+  background-color: white;
+  border-top: 1px solid #e0e0e0;
+}
+
+.message-form {
+  display: flex;
+  gap: 10px;
+}
+
+.message-input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.message-input:focus {
+  border-color: #0084d6;
+}
+
+.message-input:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.send-button {
+  background-color: #0084d6;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+}
+
+.send-button:hover:not(:disabled) {
+  background-color: #0077c0;
+}
+
+.send-button:disabled {
+  background-color: #a0c4e3;
+  cursor: not-allowed;
+}
+
+/* Стили для формы аутентификации */
+.auth-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f2f5;
+  padding: 20px;
+}
+
+.auth-form-wrapper {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.auth-title {
+  text-align: center;
+  color: #0084d6;
+  margin-bottom: 10px;
+  font-size: 28px;
+}
+
+.auth-subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+/* Подсказка под заголовком формы входа: где взять учётные данные */
+.auth-hint {
+  color: #7a7a7a;
+  font-size: 13px;
+  line-height: 1.5;
+  background-color: #f4f8fb;
+  border-left: 3px solid #0084d6;
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 24px;
+}
+
+/* Ссылка внутри подсказки (на личный кабинет GREEN-API) */
+.auth-hint a {
+  color: #0084d6;
+  text-decoration: none;
+}
+
+.auth-hint a:hover {
+  text-decoration: underline;
+}
+
+/* Блок с примером того, как выглядят настоящие учётные данные.
+   Помогает пользователю понять формат значений из личного кабинета. */
+.auth-example {
+  background-color: #f7f8fa;
+  border: 1px dashed #d6d9de;
+  border-radius: 6px;
+  padding: 10px 12px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+/* Заголовок блока с примером */
+.auth-example-title {
+  color: #6b7280;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+/* Одна строка примера: название поля, значение и пояснение */
+.auth-example-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+
+.auth-example-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Название поля в примере */
+.auth-example-key {
+  color: #374151;
+  font-weight: 500;
+  min-width: 130px;
+}
+
+/* Само значение в примере — как код */
+.auth-example-row code {
+  background-color: #e8eaed;
+  border-radius: 3px;
+  padding: 2px 6px;
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 11px;
+  color: #1f2937;
+  word-break: break-all;
+}
+
+/* Пояснение к значению (сколько символов и т.п.) */
+.auth-example-note {
+  color: #9aa0a6;
+}
+
+/* Пометка «(необязательно)» рядом с названием поля */
+.label-optional {
+  color: #9aa0a6;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+/* Мелкое пояснение под полем ввода */
+.field-note {
+  color: #8a8f98;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Блок с текстом ошибки под формой входа (неверный токен, инстанс не авторизован) */
+.auth-error {
+  background-color: #fdecea;
+  color: #b3261e;
+  border: 1px solid #f5c6c2;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.form-input {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #0084d6;
+  box-shadow: 0 0 0 2px rgba(0, 132, 214, 0.2);
+}
+
+.auth-button {
+  background-color: #0084d6;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.auth-button:hover {
+  background-color: #0077c0;
+}
+
+.auth-button:disabled {
+  background-color: #a0c4e3;
+  cursor: not-allowed;
+}
+
+/* Стили для ввода номера телефона */
+.phone-input-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f2f5;
+  padding: 20px;
+}
+
+.phone-input-container h2 {
+  margin-bottom: 20px;
+  color: #0084d6;
+  text-align: center;
+}
+
+.change-account-button {
+  background: none;
+  border: none;
+  color: #0084d6;
+  cursor: pointer;
+  margin-top: 15px;
+  padding: 10px;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+
+.change-account-button:hover {
+  color: #0066a3;
+  text-decoration: underline;
+}
+
+/* Основной синий цвет для Telegram */
+:root {
+  --telegram-blue: #0084d6;
+  --telegram-light: #c7e5f5;
+}
+
+/* ---------------------------------------------------------------------------
+ * ДОПОЛНИТЕЛЬНЫЕ СТИЛИ
+ * ------------------------------------------------------------------------- */
+
+/* Кнопка «Сменить аккаунт» в шапке приложения */
+.logout-button {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Полоса с текстом ошибки (неверный номер, ошибка отправки и т.п.) */
+.error-banner {
+  background-color: #fdecea;
+  color: #b3261e;
+  border: 1px solid #f5c2c0;
+  border-radius: 8px;
+  margin: 15px 20px 0;
+  padding: 12px 15px;
+  font-size: 14px;
+}
+
+/* Пояснение под заголовком «Введите номер телефона» */
+.phone-hint {
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+  max-width: 420px;
+  margin-bottom: 20px;
+}
+
+/* Форма создания чата: поле ввода + кнопка */
+.phone-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* Блок с названием чата и номером телефона в шапке переписки */
+.chat-header-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* позволяет длинному заголовку обрезаться, а не растягивать шапку */
+}
+
+.chat-title {
+  font-size: 16px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-subtitle {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+/* Заглушка, когда в чате ещё нет ни одного сообщения */
+.chat-empty {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #777;
+  text-align: center;
+  gap: 8px;
+}
+
+.chat-empty-hint {
+  font-size: 13px;
+  color: #999;
+}
+
+/* Входящие сообщения прижимаем к левому краю (исходящие — к правому) */
+.message-wrapper.incoming {
+  align-self: flex-start;
+}
+
+/* Отметка о доставке исходящего сообщения */
+.message-status {
+  font-size: 11px;
+}
